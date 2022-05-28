@@ -7,7 +7,7 @@
 # #### 1. Comienza importando NumPy como `np`
 
 # In[ ]:
-
+import numpy as np
 
 
 
@@ -22,8 +22,8 @@
 # #### 2.Crea un array de NumPy que represente los datos anteriores. Cada elemento debe ser un numero (por ejemplo `2.34` para "2.34 minutos/segundos"). Guarda este array como `un_usuario`
 
 # In[ ]:
-
-
+datos_usuario = [2.34,8,4,1,5]
+un_usuario = np.array(datos_usuario)
 
 
 
@@ -32,17 +32,14 @@
 # #### 3. Carga este archivo en una variable llamada `usuarios`
 
 # In[ ]:
-
-
-
-
+import pandas as pd
+usuarios = np.genfromtxt ('usuarios.csv', delimiter=",")
 
 # #### 4. Emite 'usuarios'
 
 # In[ ]:
+print(usuarios)
 
-
-usuarios
 
 
 # Cada fila representa un usuario diferente. Cada columna representa una característica diferente.
@@ -53,6 +50,8 @@ usuarios
 
 # In[ ]:
 
+acciones = usuarios[:,2:3]
+print(acciones)
 
 
 
@@ -61,7 +60,7 @@ usuarios
 
 # In[ ]:
 
-
+print(acciones==4)
 
 
 
@@ -71,7 +70,8 @@ usuarios
 
 # In[ ]:
 
-
+datos_tercer_fila = usuarios[4:5,:]
+print(datos_tercer_fila)
 
 
 
@@ -79,7 +79,8 @@ usuarios
 
 # In[ ]:
 
-
+datos_tercer_fila_x2 = datos_tercer_fila*2
+print(datos_tercer_fila_x2)
 
 
 
@@ -87,7 +88,8 @@ usuarios
 
 # In[ ]:
 
-
+total_usuarios = len(usuarios[:,0:1])
+print(total_usuarios)
 
 
 
@@ -102,5 +104,32 @@ usuarios
 
 # In[ ]:
 
-
-
+# 1. El máximo de tiempo que estuvo un usuario navegando.
+max_t_navega = (usuarios[:,0:1]).max()
+print(max_t_navega)
+# 2. El mínimo de tiempo que estuvo un usuario navegando.
+min_t_navega = (usuarios[:,0:1]).min()
+print(min_t_navega)
+# 3. La media de tiempo de navegación y de páginas navegadas.
+#de las 2 formas da:
+media_t_navega = (usuarios[:,0:1]).mean()
+print(media_t_navega)
+media_t_navega = np.mean(usuarios[:,0:1])
+print(media_t_navega)
+media_paginas = (usuarios[:,1:2]).mean()
+print(media_paginas)
+# 4. El total de tiempo de navegación y de páginas navegadas.
+#de las 2 formas da:
+total_t_navega = (usuarios[:,0:1]).sum()
+print(total_t_navega)
+total_t_navega = np.sum(usuarios[:,0:1])
+print(total_t_navega)
+total_paginas = (usuarios[:,1:2]).sum()
+print(total_paginas)
+# 5. La mediana de acciones registradas.
+mediana_acciones = np.median(usuarios[:,2:3])
+print(mediana_acciones)
+# 6. Calcula la moda de las acciones (puedes necesitar: from scipy import stats
+from scipy import stats
+moda_acciones = stats.mode(usuarios[:,2:3])
+print(moda_acciones)
